@@ -74,6 +74,13 @@ cnn_mae = np.array([
     [0.012280, 0.005629, 0.002332, 0.001305],
 ])
 
+cnn_winners = [
+    ["CNN-8F-K3 (LR:0.001, DO:0.0)",   "CNN-8F-K3 (LR:0.001, DO:0.0)",   "CNN-32F-K3 (LR:0.001, DO:0.2)",  "CNN-32F-K3 (LR:0.001, DO:0.2)" ],
+    ["CNN-16F-K3 (LR:0.001, DO:0.1)",  "CNN-16F-K3 (LR:0.001, DO:0.1)",  "CNN-128F-K3 (LR:0.001, DO:0.2)", "CNN-128F-K3 (LR:0.001, DO:0.2)"],
+    ["CNN-64F-K3 (LR:0.001, DO:0.1)",  "CNN-64F-K3 (LR:0.001, DO:0.1)",  "CNN-128F-K3 (LR:0.001, DO:0.2)", "CNN-128F-K3 (LR:0.001, DO:0.2)"],
+    ["CNN-128F-K3 (LR:0.0005, DO:0.2)","CNN-128F-K3 (LR:0.0005, DO:0.2)","CNN-256F-K3 (LR:0.0005, DO:0.2)","CNN-128F-K3 (LR:0.0005, DO:0.2)"]
+]
+
 # --- RNN (competición): MAE test ---
 rnn_mae = np.array([
     [0.012279, 0.005596, 0.002333, 0.001299],
@@ -81,6 +88,29 @@ rnn_mae = np.array([
     [0.012462, 0.005858, 0.002691, 0.001775],
     [0.012462, 0.005782, 0.002790, 0.001283],
 ])
+
+rnn_winners = [
+    ["LSTM-4N (LR:0.001, DO:0.0)",   "LSTM-4N (LR:0.001, DO:0.0)",     "GRU-16N (LR:0.0005, DO:0.1)",    "GRU-32N (LR:0.0005, DO:0.1)"   ],
+    ["LSTM-8N (LR:0.0005, DO:0.0)",  "LSTM-8N (LR:0.0005, DO:0.0)",    "LSTM-128N (LR:5e-05, DO:0.25)",  "LSTM-128N (LR:5e-05, DO:0.25)" ],
+    ["GRU-4N (LR:0.001, DO:0.0)",    "LSTM-8N (LR:0.0005, DO:0.0)",    "LSTM-16N (LR:0.0005, DO:0.0)",   "LSTM-16N (LR:0.0005, DO:0.0)"  ],
+    ["LSTM-16N (LR:0.001, DO:0.1)",  "LSTM-16N (LR:0.001, DO:0.1)",    "LSTM-16N (LR:0.0005, DO:0.0)",   "LSTM-16N (LR:0.0005, DO:0.0)"  ]
+]
+
+
+# --- MIXTAS (competición): MAE test ---
+mix_mae = np.array([
+    [0.012274, 0.005599, 0.002322, 0.001270],
+    [0.012522, 0.006227, 0.003056, 0.002366],
+    [0.012460, 0.005869, 0.002459, 0.002111],
+    [0.012426, 0.006002, 0.002874, 0.001357],
+])
+
+mix_winners = [
+    ["CNN(8F,K2)+LSTM(8) (LR:0.0005, DO:0.3)", "CNN(16F,K2)+LSTM(8) (LR:0.0005, DO:0.3)", "CNN(8F,K3)+LSTM(8) (LR:0.0005, DO:0.4)", "CNN(8F,K3)+LSTM(8) (LR:0.0005, DO:0.4)"],
+    ["CNN(8F,K3)+GRU(8) (LR:0.0005, DO:0.3)",  "CNN(8F,K3)+GRU(8) (LR:0.0005, DO:0.3)",  "CNN(16F,K5)+GRU(16) (LR:0.0005, DO:0.4)", "CNN(16F,K5)+GRU(16) (LR:0.0005, DO:0.4)"],
+    ["CNN(16F,K3)+LSTM(16) (LR:0.0001, DO:0.5)", "CNN(16F,K3)+LSTM(16) (LR:0.0001, DO:0.5)", "CNN(16F,K5)+LSTM(16) (LR:0.0005, DO:0.4)", "CNN(32F,K5)+LSTM(16) (LR:0.0001, DO:0.5)"],
+    ["CNN(16F,K5)+LSTM(16) (LR:0.0001, DO:0.5)", "CNN(16F,K5)+LSTM(16) (LR:0.0001, DO:0.5)", "CNN(32F,K5)+LSTM(16) (LR:0.0001, DO:0.5)", "CNN(16F,K10)+LSTM(16) (LR:0.0005, DO:0.5)"]
+]
 
 # --- Buy & Hold baseline ---
 bh_mae = np.array([
@@ -181,7 +211,7 @@ def slide_portada(pdf):
              ha="center", fontsize=12, color=TEXT_SUB)
 
     # Chips de arquitecturas
-    chips = ["DNN", "CNN", "RNN (LSTM/GRU)", "CNN + RNN"]
+    chips = ["DNN", "CNN", "RNN (LSTM/GRU)", "CNN + RNN + DNN"]
     colors = [ACCENT, ACCENT2, ACCENT3, ACCENT4]
     xs = [0.25, 0.40, 0.57, 0.77]
     for x, chip, col in zip(xs, chips, colors):
